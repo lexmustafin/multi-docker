@@ -12,4 +12,11 @@ after_success:
   - docker build -t lexmustafin/multi-client ./client
   - docker build -t lexmustafin/multi-nginx ./nginx
   - docker build -t lexmustafin/multi-server ./server
-  - docker build - t lexmustafin ./worker
+  - docker build - t lexmustafin/worker ./worker
+
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+  - docker push lexmustafin/multi-client
+  - docker push lexmustafin/multi-nginx
+  - docker push lexmustafin/multi-server
+  - docker push lexmustafin/worker
